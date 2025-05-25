@@ -1,11 +1,6 @@
 ## EX. NO:2 IMPLEMENTATION OF PLAYFAIR CIPHER
 
- 
-
 ## AIM:
- 
-
- 
 
 To write a C program to implement the Playfair Substitution technique.
 
@@ -18,6 +13,8 @@ To encrypt a message, one would break the message into digrams (groups of 2 lett
 2.	If the letters appear on the same row of your table, replace them with the letters to their immediate right respectively
 3.	If the letters appear on the same column of your table, replace them with the letters immediately below respectively
 4.	If the letters are not on the same row or column, replace them with the letters on the same row respectively but at the other pair of corners of the rectangle defined by the original pair.
+
+
 ## EXAMPLE:
 ![image](https://github.com/Hemamanigandan/EX-NO-2-/assets/149653568/e6858d4f-b122-42ba-acdb-db18ec2e9675)
 
@@ -32,12 +29,119 @@ STEP-4: Group the plain text in pairs and match the corresponding corner letters
 STEP-5: Display the obtained cipher text.
 
 
+## Program:
+
+```
+for (i = 0; i < ks; i++)
+{
+    if (key[i] != 'j')
+        dicty[key[i] - 'a'] = 2;
+}
+
+dicty['j' - 'a'] = 1;
+
+i = 0;
+j = 0;
+for (k = 0; k < ks; k++)
+{
+    if (dicty[key[k] - 'a'] == 2)
+    {
+        dicty[key[k] - 'a'] -= 1;
+        keyT[i][j++] = key[k];
+        if (j == 5)
+        {
+            i++;
+            j = 0;
+        }
+    }
+}
+
+for (k = 0; k < 26; k++)
+{
+    if (dicty[k] == 0)
+    {
+        keyT[i][j++] = (char)(k + 'a');
+        if (j == 5)
+        {
+            i++;
+            j = 0;
+        }
+    }
+}
+
+free(dicty);
+
+if (a == 'j') a = 'i';
+if (b == 'j') b = 'i';
+
+for (i = 0; i < 5; i++)
+{
+    for (j = 0; j < 5; j++)
+    {
+        if (keyT[i][j] == a)
+        {
+            arr[0] = i;
+            arr[1] = j;
+        }
+        else if (keyT[i][j] == b)
+        {
+            arr[2] = i;
+            arr[3] = j;
+        }
+    }
+}
+
+for (i = 0; i < ps; i += 2)
+{
+    search(keyT, str[i], str[i + 1], a);
+
+    if (a[0] == a[2])
+    {
+        str[i] = keyT[a[0]][mod5(a[1] + 1)];
+        str[i + 1] = keyT[a[0]][mod5(a[3] + 1)];
+    }
+    else if (a[1] == a[3])
+    { 
+        str[i] = keyT[mod5(a[0] + 1)][a[1]];
+        str[i + 1] = keyT[mod5(a[2] + 1)][a[1]];
+    }
+    else
+    { 
+        str[i] = keyT[a[0]][a[3]];
+        str[i + 1] = keyT[a[2]][a[1]];
+    }
+}
+
+ks = strlen(key);
+ks = removeSpaces(key, ks);
+toLowerCase(key, ks);
+
+ps = strlen(str);
+toLowerCase(str, ps);
+ps = removeSpaces(str, ps);
+ps = prepare(str, ps);
+
+generateKeyTable(key, ks, keyT);
+encrypt(str, keyT, ps);
+
+strcpy(key, "Monarchy");
+printf("Key text: %s\n", key);
+
+strcpy(str, "instruments");
+printf("Plain text: %s\n", str);
+
+encryptByPlayfairCipher(str, key);
+printf("Cipher text: %s\n", str);
+
+return 0;
+```
 
 
-Program:
+## Output:
+
+![image](https://github.com/user-attachments/assets/300882ea-6dae-4e88-8476-7de1af426613)
 
 
+## RESULT:
 
-
-
-Output:
+The program is executed successfully.
