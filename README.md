@@ -30,7 +30,9 @@ STEP-5: Display the obtained cipher text.
 
 
 ## Program:
-
+```
+Name: RAMYA R
+Reg No: 212223230169
 ```
 for (i = 0; i < ks; i++)
 {
@@ -139,7 +141,7 @@ return 0;
 
 ## Output:
 
-![image](https://github.com/user-attachments/assets/300882ea-6dae-4e88-8476-7de1af426613)
+![image](https://github.com/user-attachments/assets/e41fbd70-c5ae-44e0-b3b6-af4a0fa022ac)
 
 
 ## RESULT:
